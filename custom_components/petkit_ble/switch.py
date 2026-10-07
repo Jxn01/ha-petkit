@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 
 from homeassistant.components.switch import ENTITY_ID_FORMAT, SwitchEntity, SwitchEntityDescription
+from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -91,13 +92,21 @@ class PetkitPowerSwitch(PetkitBleEntity, SwitchEntity):
             _LOGGER.error("Failed to set power state to %d", power_state)
 
 
+# The LED and the child lock are settings; Do Not Disturb stays a control next to power.
+CONFIG_SWITCHES = frozenset({"led", "child_lock"})
+
+
 class PetkitSettingsSwitch(PetkitBleEntity, SwitchEntity):
     """Switch entity for a boolean setting (LED, DND, child lock) via CMD 221."""
 
     def __init__(self, coordinator: PetkitBleCoordinator, key: str, field_name: str) -> None:
         """Initialise the settings switch."""
         super().__init__(coordinator, key, ENTITY_ID_FORMAT)
-        self.entity_description = SwitchEntityDescription(key=key, translation_key=key)
+        self.entity_description = SwitchEntityDescription(
+            key=key,
+            translation_key=key,
+            entity_category=EntityCategory.CONFIG if key in CONFIG_SWITCHES else None,
+        )
         self._field_name = field_name
 
     @property

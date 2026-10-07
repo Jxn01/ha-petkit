@@ -2,15 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "Configurer la fontaine à eau Petkit",
-        "description": "Sélectionnez une fontaine Petkit détectée automatiquement ou saisissez manuellement son adresse MAC Bluetooth.",
+        "title": "Configurer la fontaine à eau PetKit",
+        "description": "Sélectionnez une fontaine PetKit détectée automatiquement ou saisissez manuellement son adresse MAC Bluetooth.",
         "data": {
           "address": "Adresse MAC Bluetooth",
           "name": "Nom de l'appareil (optionnel)"
         }
       },
       "bluetooth_confirm": {
-        "title": "Confirmer la fontaine Petkit",
+        "title": "Confirmer la fontaine PetKit",
         "description": "Voulez-vous configurer la fontaine **{name}** ({address}) ?"
       },
       "init_device": {
@@ -27,7 +27,7 @@
       }
     },
     "error": {
-      "no_devices_found": "Aucune fontaine Petkit n'a été trouvée à proximité. Saisissez l'adresse MAC manuellement.",
+      "no_devices_found": "Aucune fontaine PetKit n'a été trouvée à proximité. Saisissez l'adresse MAC manuellement.",
       "cannot_connect": "Impossible de se connecter à l'appareil. Assurez-vous qu'il est sous tension et à portée.",
       "unknown": "Une erreur inattendue est survenue.",
       "device_already_initialized": "L'appareil est déjà initialisé. Veuillez d'abord le réinitialiser aux paramètres d'usine (retirez le module de commande, maintenez le bouton d'alimentation enfoncé pendant 3 secondes jusqu'à ce que les LEDs clignotent).",
@@ -35,7 +35,7 @@
     },
     "abort": {
       "already_configured": "Cet appareil est déjà configuré.",
-      "no_devices_found": "Aucune fontaine Petkit n'a été trouvée.",
+      "no_devices_found": "Aucune fontaine PetKit n'a été trouvée.",
       "device_already_initialized": "Cet appareil est déjà initialisé avec une clé secrète. Veuillez d'abord le réinitialiser aux paramètres d'usine (retirez le module de commande, maintenez le bouton d'alimentation enfoncé pendant 3 secondes jusqu'à ce que les LEDs clignotent), puis réessayez.",
       "repair_failed": "Impossible de ré-appairer l'appareil. Rapprochez-le et réessayez ; si l'échec persiste, réinitialisez-le aux paramètres d'usine (retirez le module de commande, maintenez le bouton d'alimentation enfoncé pendant 3 secondes jusqu'à ce que les LEDs clignotent), puis ajoutez-le à nouveau.",
       "repair_cancelled": "Ré-appairage annulé. L'appareil a été laissé intact.",
@@ -45,7 +45,7 @@
   "options": {
     "step": {
       "init": {
-        "title": "Options Petkit BLE",
+        "title": "Options PetKit BLE",
         "data": {
           "debug": "Activer le journal de débogage"
         },

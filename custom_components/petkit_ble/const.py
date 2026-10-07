@@ -60,6 +60,16 @@ ALIAS_W5 = "W5"
 ALIAS_W4XUVC = "W4XUVC"
 ALIAS_W4X = "W4X"
 
+MANUFACTURER = "PetKit"
+
+# PetKit's own product names, for the device page. Only names confirmed against
+# PetKit's catalogue are listed (W4X-UVC = "EverSweet 3 Pro (UVC)",
+# petkit.com/products/eversweet-wireless); any other alias is shown as itself.
+MODEL_NAMES: dict[str, str] = {
+    ALIAS_W4XUVC: "EverSweet 3 Pro UVC",
+    ALIAS_W4X: "EverSweet 3 Pro",
+}
+
 # BLE name prefixes used for discovery
 PETKIT_NAME_PREFIXES = (
     "Petkit_CTW",

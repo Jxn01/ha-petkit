@@ -2,15 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "Set up Petkit Water Fountain",
-        "description": "Select a discovered Petkit fountain, or enter its Bluetooth MAC address manually.",
+        "title": "Set up PetKit Water Fountain",
+        "description": "Select a discovered PetKit fountain, or enter its Bluetooth MAC address manually.",
         "data": {
           "address": "Bluetooth MAC address",
           "name": "Device name (optional)"
         }
       },
       "bluetooth_confirm": {
-        "title": "Confirm Petkit Fountain",
+        "title": "Confirm PetKit Fountain",
         "description": "Do you want to set up the **{name}** fountain ({address})?"
       },
       "init_device": {
@@ -35,7 +35,7 @@
       }
     },
     "error": {
-      "no_devices_found": "No Petkit fountains were found nearby. Enter the MAC address manually.",
+      "no_devices_found": "No PetKit fountains were found nearby. Enter the MAC address manually.",
       "cannot_connect": "Could not connect to the device. Make sure it is powered on and in range.",
       "unknown": "An unexpected error occurred.",
       "device_already_initialized": "Device is already initialized. Please factory reset it first (detach control module, hold power button 3 seconds until LEDs flash).",
@@ -45,7 +45,7 @@
     },
     "abort": {
       "already_configured": "This device is already configured.",
-      "no_devices_found": "No Petkit fountains were found.",
+      "no_devices_found": "No PetKit fountains were found.",
       "device_already_initialized": "This device is already initialized with a secret. Please factory reset it first (detach control module, hold power button for 3 seconds until LEDs flash), then try again.",
       "repair_failed": "Could not re-pair the device. Bring it closer and try again; if it keeps failing, factory reset it (detach control module, hold power button 3 seconds until LEDs flash), then re-add it.",
       "repair_cancelled": "Re-pairing cancelled. The device was left untouched.",
@@ -55,7 +55,7 @@
   "options": {
     "step": {
       "init": {
-        "title": "Petkit BLE Options",
+        "title": "PetKit BLE Options",
         "data": {
           "debug": "Enable debug logging"
         },

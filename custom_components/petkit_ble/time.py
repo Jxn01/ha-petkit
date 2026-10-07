@@ -8,6 +8,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 
 from homeassistant.components.time import ENTITY_ID_FORMAT, TimeEntity, TimeEntityDescription
+from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -43,6 +44,7 @@ class PetkitTimeDescription(TimeEntityDescription):
 
 TIME_DESCRIPTIONS: tuple[PetkitTimeDescription, ...] = (
     PetkitTimeDescription(
+        entity_category=EntityCategory.CONFIG,
         key="led_on_time",
         translation_key="led_on_time",
         value_fn=lambda d: d.led_on_minutes,
@@ -51,6 +53,7 @@ TIME_DESCRIPTIONS: tuple[PetkitTimeDescription, ...] = (
         available_fn=lambda d: d.alias not in CTW3_ALIASES,
     ),
     PetkitTimeDescription(
+        entity_category=EntityCategory.CONFIG,
         key="led_off_time",
         translation_key="led_off_time",
         value_fn=lambda d: d.led_off_minutes,
@@ -59,6 +62,7 @@ TIME_DESCRIPTIONS: tuple[PetkitTimeDescription, ...] = (
         available_fn=lambda d: d.alias not in CTW3_ALIASES,
     ),
     PetkitTimeDescription(
+        entity_category=EntityCategory.CONFIG,
         key="dnd_start_time",
         translation_key="dnd_start_time",
         value_fn=lambda d: d.dnd_start_minutes,
@@ -67,6 +71,7 @@ TIME_DESCRIPTIONS: tuple[PetkitTimeDescription, ...] = (
         available_fn=lambda d: d.alias not in CTW3_ALIASES,
     ),
     PetkitTimeDescription(
+        entity_category=EntityCategory.CONFIG,
         key="dnd_end_time",
         translation_key="dnd_end_time",
         value_fn=lambda d: d.dnd_end_minutes,

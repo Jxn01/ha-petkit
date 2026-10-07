@@ -149,6 +149,39 @@ Communication uses a proprietary BLE protocol over two GATT characteristics (not
 
 ---
 
+## This fork: look and language (Jxn01, 2026-10-07)
+
+This is [Jxn01's fork](https://github.com/Jxn01/ha-petkit) of
+[aavdberg/ha-petkit](https://github.com/aavdberg/ha-petkit) (MIT). On top of upstream `1.10.0` it adopts an
+already-paired fountain by reusing its existing secret, never writes CMD 73 on a missing reply, and carries
+the polish below. Its version is `1.10.0+jxn.1`.
+
+- **Brand images** in `custom_components/petkit_ble/brand/`: `icon.png` 256², `icon@2x.png` 512², `logo.png`
+  1299×256, `logo@2x.png` 2598×512, each also as a `dark_` variant (white on transparent). Home Assistant
+  2026.9+ serves a custom integration's own `brand/` folder, so the integrations page, the device page and the
+  config flow show PetKit's dog-head mark instead of the placeholder. Source: the PetKit images in
+  [home-assistant/brands](https://github.com/home-assistant/brands/tree/master/custom_integrations/petkit)
+  (`custom_integrations/petkit`, added 2023-02-07). Those are black on an opaque white square; here the white
+  became transparency, the marks were traced to vectors with potrace and re-rendered at each size, and a
+  white version was made for dark themes. The root-level `icon.png` (upstream's fountain icon) is unchanged.
+- **Icons** (`icons.json`) for every entity, with state icons for the warnings, the pump, Do Not Disturb, UVC,
+  the mode and the switches. Battery, voltage, power, energy, signal strength, AC power and low battery keep
+  the icons of their device class.
+- **Hungarian** (`translations/hu.json`): everything `en.json` covers. `strings.json` was only the config flow;
+  it now equals `en.json`. "Petkit" is spelled "PetKit" in every language file.
+- **Device page:** manufacturer `PetKit`, the model name where PetKit's catalogue confirms it (`W4XUVC` =
+  EverSweet 3 Pro UVC, `W4X` = EverSweet 3 Pro; any other alias is shown as itself, and is the model ID), and
+  the Bluetooth connection.
+- **Categories:** the settings (smart-mode times, LED brightness, the battery durations, the LED and Do Not
+  Disturb times, the LED switch, the child lock) are *configuration*: they sit in the device page's
+  Configuration card and no longer appear on an auto-generated dashboard. Power, mode, Do Not Disturb and
+  Reset filter stay controls. Signal strength is disabled by default for new installs.
+- `tests/test_ui.py` fails the build when an entity key lacks an English name, a Hungarian name or an icon,
+  when Hungarian and English drift apart, or when a brand image breaks the brands spec.
+
+"PetKit" and "EverSweet" are trademarks of their owner; the logo is used only to identify the devices this
+integration talks to, and the project is not affiliated with or endorsed by PetKit.
+
 ## Development
 
 ### Branching Strategy

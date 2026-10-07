@@ -12,6 +12,7 @@ from homeassistant.components.number import (
     NumberEntityDescription,
     NumberMode,
 )
+from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -37,6 +38,7 @@ class PetkitNumberDescription(NumberEntityDescription):
 
 NUMBER_DESCRIPTIONS: tuple[PetkitNumberDescription, ...] = (
     PetkitNumberDescription(
+        entity_category=EntityCategory.CONFIG,
         key="smart_work_minutes",
         translation_key="smart_work_minutes",
         native_min_value=1,
@@ -47,6 +49,7 @@ NUMBER_DESCRIPTIONS: tuple[PetkitNumberDescription, ...] = (
         field_name="smart_time_on",
     ),
     PetkitNumberDescription(
+        entity_category=EntityCategory.CONFIG,
         key="smart_sleep_minutes",
         translation_key="smart_sleep_minutes",
         native_min_value=1,
@@ -57,6 +60,7 @@ NUMBER_DESCRIPTIONS: tuple[PetkitNumberDescription, ...] = (
         field_name="smart_time_off",
     ),
     PetkitNumberDescription(
+        entity_category=EntityCategory.CONFIG,
         key="led_brightness",
         translation_key="led_brightness",
         native_min_value=1,
@@ -68,6 +72,7 @@ NUMBER_DESCRIPTIONS: tuple[PetkitNumberDescription, ...] = (
         field_name="led_brightness",
     ),
     PetkitNumberDescription(
+        entity_category=EntityCategory.CONFIG,
         key="battery_work_seconds",
         translation_key="battery_work_seconds",
         native_min_value=1,
@@ -80,6 +85,7 @@ NUMBER_DESCRIPTIONS: tuple[PetkitNumberDescription, ...] = (
         field_name="battery_work_time",
     ),
     PetkitNumberDescription(
+        entity_category=EntityCategory.CONFIG,
         key="battery_sleep_seconds",
         translation_key="battery_sleep_seconds",
         native_min_value=1,

@@ -1,0 +1,208 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "PetKit itatókút beállítása",
+        "description": "Válassz egy felfedezett PetKit itatókutat, vagy add meg kézzel a Bluetooth MAC-címét.",
+        "data": {
+          "address": "Bluetooth MAC-cím",
+          "name": "Eszköznév (nem kötelező)"
+        }
+      },
+      "bluetooth_confirm": {
+        "title": "PetKit itatókút megerősítése",
+        "description": "Beállítod a(z) **{name}** itatókutat ({address})?"
+      },
+      "init_device": {
+        "title": "Eszköz inicializálása",
+        "description": "A(z) **{name}** eszközt inicializálni kell. Ez egy titkos kulcsot regisztrál az eszközön. **Figyelem:** az inicializálás után a PetKit alkalmazás nem tud többé csatlakozni ehhez az eszközhöz. Az alkalmazás hozzáférését gyári visszaállítással állíthatod helyre."
+      },
+      "confirm_repair": {
+        "title": "Az eszköz már párosítva van",
+        "description": "A(z) **{name}** már párosítva van — valószínűleg a PetKit alkalmazással, vagy egy korábbi Home Assistant-beállítással, amelynek a titkos kulcsa elveszett. Ahhoz, hogy a Home Assistantból vezérelhesd, új titkos kulccsal újra kell párosítani. Ez **felülírja a meglévő párosítást**: a PetKit alkalmazás a gyári visszaállításig nem tud csatlakozni, és a kettő nem vezérelheti egyszerre.",
+        "menu_options": {
+          "repair_confirm": "Újrapárosítás most (lecseréli a meglévő párosítást)",
+          "repair_cancel": "Mégse — az eszköz érintetlen marad",
+          "enter_secret": "Az eszköz meglévő titkos kulcsának használata (a PetKit alkalmazás tovább működik)"
+        }
+      },
+      "enter_secret": {
+        "title": "A meglévő titkos kulcs használata",
+        "description": "Add meg a(z) **{name}** titkos kulcsát úgy, ahogy a PetKit megadja — 12 hexadecimális karakter (16 is elfogadott). Ez a PetKit saját, eszközönkénti titkos kulcsa: a PetKit felhő-API-ja adja vissza, vagy a PetKit alkalmazás naplóiban `secret:` néven jelenik meg. Az itatókútra semmi nem íródik, így a PetKit alkalmazás a Home Assistant mellett is tovább működik.",
+        "data": {
+          "device_secret": "Eszköz titkos kulcsa"
+        }
+      }
+    },
+    "error": {
+      "no_devices_found": "Nem található PetKit itatókút a közelben. Add meg kézzel a MAC-címet.",
+      "cannot_connect": "Nem sikerült csatlakozni az eszközhöz. Ellenőrizd, hogy be van-e kapcsolva és hatótávolságon belül van-e.",
+      "unknown": "Váratlan hiba történt.",
+      "device_already_initialized": "Az eszköz már inicializálva van. Előbb állítsd vissza gyári állapotra (vedd le a vezérlőmodult, és tartsd nyomva a bekapcsológombot 3 másodpercig, amíg a LED-ek villogni kezdenek).",
+      "init_failed": "Nem sikerült inicializálni az eszközt. Próbáld újra.",
+      "invalid_secret": "Az itatókút elutasította ezt a titkos kulcsot. Ellenőrizd, hogy ennek az eszköznek a kulcsa-e, és próbáld újra.",
+      "invalid_secret_format": "A titkos kulcsot 12 (vagy 16) hexadecimális karakterként add meg."
+    },
+    "abort": {
+      "already_configured": "Ez az eszköz már be van állítva.",
+      "no_devices_found": "Nem található PetKit itatókút.",
+      "device_already_initialized": "Ez az eszköz már inicializálva van egy titkos kulccsal. Előbb állítsd vissza gyári állapotra (vedd le a vezérlőmodult, és tartsd nyomva a bekapcsológombot 3 másodpercig, amíg a LED-ek villogni kezdenek), majd próbáld újra.",
+      "repair_failed": "Nem sikerült újrapárosítani az eszközt. Vidd közelebb, és próbáld újra; ha továbbra sem sikerül, állítsd vissza gyári állapotra (vedd le a vezérlőmodult, és tartsd nyomva a bekapcsológombot 3 másodpercig, amíg a LED-ek villogni kezdenek), majd add hozzá újra.",
+      "repair_cancelled": "Az újrapárosítás megszakítva. Az eszköz érintetlen maradt.",
+      "unsupported_device": "Előfordulhat, hogy ezt az eszközmodellt az integráció nem támogatja teljesen. Jelentsd a GitHubon az eszközmodelleddel és a naplókkal."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "PetKit BLE beállítások",
+        "data": {
+          "debug": "Hibakeresési naplózás bekapcsolása"
+        },
+        "data_description": {
+          "debug": "Minden BLE-keret (TX/RX) és hitelesítési lépés naplózása. Kapcsolati problémák diagnosztizálásához hasznos; éles használatban kapcsold ki."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "filter_percent": {
+        "name": "Szűrő élettartama"
+      },
+      "pump_runtime_today": {
+        "name": "Szivattyú mai üzemideje"
+      },
+      "pump_runtime": {
+        "name": "Szivattyú teljes üzemideje"
+      },
+      "battery_percent": {
+        "name": "Akkumulátor"
+      },
+      "battery_voltage_mv": {
+        "name": "Akkumulátor feszültsége"
+      },
+      "water_purified_today": {
+        "name": "Ma tisztított víz"
+      },
+      "energy_today": {
+        "name": "Mai energiafogyasztás"
+      },
+      "power": {
+        "name": "Teljesítmény"
+      },
+      "energy_today_wh": {
+        "name": "Mai energiafogyasztás (Wh)"
+      },
+      "filter_days_remaining": {
+        "name": "Szűrőből hátralévő napok"
+      },
+      "firmware": {
+        "name": "Firmware"
+      },
+      "hardware_version": {
+        "name": "Hardververzió"
+      },
+      "rssi": {
+        "name": "Jelerősség"
+      },
+      "drink_count": {
+        "name": "Mai ivások"
+      },
+      "state_tail_hex": {
+        "name": "CTW3 állapotvég (hex)"
+      }
+    },
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Szivattyú jár"
+      },
+      "warning_water_missing": {
+        "name": "Nincs víz"
+      },
+      "warning_filter": {
+        "name": "Szűrőfigyelmeztetés"
+      },
+      "warning_breakdown": {
+        "name": "Hardverhiba"
+      },
+      "dnd_active": {
+        "name": "Ne zavarjanak aktív"
+      },
+      "pet_detected": {
+        "name": "Állat iszik"
+      },
+      "on_ac_power": {
+        "name": "Hálózati táp"
+      },
+      "low_battery": {
+        "name": "Alacsony akkumulátorszint"
+      },
+      "suspended": {
+        "name": "Szivattyú szüneteltetve"
+      },
+      "uvc_active": {
+        "name": "UVC-sterilizálás"
+      }
+    },
+    "button": {
+      "reset_filter": {
+        "name": "Szűrő visszaállítása"
+      }
+    },
+    "number": {
+      "smart_work_minutes": {
+        "name": "Okos mód működési ideje"
+      },
+      "smart_sleep_minutes": {
+        "name": "Okos mód pihenőideje"
+      },
+      "led_brightness": {
+        "name": "LED fényereje"
+      },
+      "battery_work_seconds": {
+        "name": "Akkumulátoros működési idő"
+      },
+      "battery_sleep_seconds": {
+        "name": "Akkumulátoros pihenőidő"
+      }
+    },
+    "time": {
+      "led_on_time": {
+        "name": "LED bekapcsolási ideje"
+      },
+      "led_off_time": {
+        "name": "LED kikapcsolási ideje"
+      },
+      "dnd_start_time": {
+        "name": "Ne zavarjanak kezdete"
+      },
+      "dnd_end_time": {
+        "name": "Ne zavarjanak vége"
+      }
+    },
+    "select": {
+      "mode": {
+        "name": "Mód",
+        "state": {
+          "normal": "Normál",
+          "smart": "Okos"
+        }
+      }
+    },
+    "switch": {
+      "power": {
+        "name": "Főkapcsoló"
+      },
+      "led": {
+        "name": "LED"
+      },
+      "do_not_disturb": {
+        "name": "Ne zavarjanak"
+      },
+      "child_lock": {
+        "name": "Gyerekzár"
+      }
+    }
+  }
+}

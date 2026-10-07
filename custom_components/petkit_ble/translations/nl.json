@@ -2,15 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "Petkit waterfonteintje instellen",
-        "description": "Selecteer een gevonden Petkit-fonteintje, of voer het Bluetooth MAC-adres handmatig in.",
+        "title": "PetKit waterfonteintje instellen",
+        "description": "Selecteer een gevonden PetKit-fonteintje, of voer het Bluetooth MAC-adres handmatig in.",
         "data": {
           "address": "Bluetooth MAC-adres",
           "name": "Apparaatnaam (optioneel)"
         }
       },
       "bluetooth_confirm": {
-        "title": "Petkit-fonteintje bevestigen",
+        "title": "PetKit-fonteintje bevestigen",
         "description": "Wil je het fonteintje **{name}** ({address}) instellen?"
       },
       "init_device": {
@@ -27,7 +27,7 @@
       }
     },
     "error": {
-      "no_devices_found": "Er zijn geen Petkit-fonteintjes gevonden in de buurt. Voer het MAC-adres handmatig in.",
+      "no_devices_found": "Er zijn geen PetKit-fonteintjes gevonden in de buurt. Voer het MAC-adres handmatig in.",
       "cannot_connect": "Kan geen verbinding maken met het apparaat. Zorg dat het aan staat en binnen bereik is.",
       "unknown": "Er is een onverwachte fout opgetreden.",
       "device_already_initialized": "Apparaat is al geïnitialiseerd. Zet het eerst terug naar fabrieksinstellingen (verwijder de besturingsmodule, houd de aan/uit-knop 3 seconden ingedrukt tot de LED's knipperen).",
@@ -35,7 +35,7 @@
     },
     "abort": {
       "already_configured": "Dit apparaat is al geconfigureerd.",
-      "no_devices_found": "Er zijn geen Petkit-fonteintjes gevonden.",
+      "no_devices_found": "Er zijn geen PetKit-fonteintjes gevonden.",
       "device_already_initialized": "Dit apparaat is al geïnitialiseerd met een geheim. Reset het apparaat eerst naar fabrieksinstellingen (verwijder de bedieningsmodule, houd de aan/uit-knop 3 seconden ingedrukt totdat de LED's knipperen) en probeer het opnieuw.",
       "repair_failed": "Opnieuw koppelen is mislukt. Breng het apparaat dichterbij en probeer het opnieuw; als het blijft mislukken, zet het terug naar fabrieksinstellingen (verwijder de besturingsmodule, houd de aan/uit-knop 3 seconden ingedrukt tot de LED's knipperen) en voeg het opnieuw toe.",
       "repair_cancelled": "Opnieuw koppelen geannuleerd. Het apparaat is ongemoeid gelaten.",
@@ -45,7 +45,7 @@
   "options": {
     "step": {
       "init": {
-        "title": "Petkit BLE opties",
+        "title": "PetKit BLE opties",
         "data": {
           "debug": "Debug-logging inschakelen"
         },

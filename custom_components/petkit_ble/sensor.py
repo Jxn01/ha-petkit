@@ -148,6 +148,8 @@ SENSOR_DESCRIPTIONS: tuple[PetkitSensorEntityDescription, ...] = (
         native_unit_of_measurement=SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
         device_class=SensorDeviceClass.SIGNAL_STRENGTH,
         entity_category=EntityCategory.DIAGNOSTIC,
+        # Home Assistant's convention for signal strength; only affects new installs.
+        entity_registry_enabled_default=False,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda d: d.rssi,
     ),

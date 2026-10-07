@@ -1,0 +1,154 @@
+{
+  "entity": {
+    "sensor": {
+      "filter_percent": {
+        "default": "mdi:air-filter"
+      },
+      "pump_runtime_today": {
+        "default": "mdi:timer-outline"
+      },
+      "pump_runtime": {
+        "default": "mdi:pump"
+      },
+      "water_purified_today": {
+        "default": "mdi:cup-water"
+      },
+      "filter_days_remaining": {
+        "default": "mdi:calendar-clock"
+      },
+      "firmware": {
+        "default": "mdi:chip"
+      },
+      "hardware_version": {
+        "default": "mdi:memory"
+      },
+      "drink_count": {
+        "default": "mdi:paw"
+      },
+      "state_tail_hex": {
+        "default": "mdi:hexadecimal"
+      }
+    },
+    "binary_sensor": {
+      "pump_running": {
+        "default": "mdi:pump-off",
+        "state": {
+          "on": "mdi:pump"
+        }
+      },
+      "warning_water_missing": {
+        "default": "mdi:water-check",
+        "state": {
+          "on": "mdi:water-off"
+        }
+      },
+      "warning_filter": {
+        "default": "mdi:air-filter",
+        "state": {
+          "on": "mdi:filter-remove"
+        }
+      },
+      "warning_breakdown": {
+        "default": "mdi:check-circle-outline",
+        "state": {
+          "on": "mdi:alert-circle"
+        }
+      },
+      "dnd_active": {
+        "default": "mdi:bell-outline",
+        "state": {
+          "on": "mdi:bell-sleep"
+        }
+      },
+      "pet_detected": {
+        "default": "mdi:paw-off-outline",
+        "state": {
+          "on": "mdi:paw"
+        }
+      },
+      "suspended": {
+        "default": "mdi:play-circle-outline",
+        "state": {
+          "on": "mdi:pause-circle-outline"
+        }
+      },
+      "uvc_active": {
+        "default": "mdi:sun-wireless-outline",
+        "state": {
+          "on": "mdi:sun-wireless"
+        }
+      }
+    },
+    "button": {
+      "reset_filter": {
+        "default": "mdi:filter-check"
+      }
+    },
+    "number": {
+      "smart_work_minutes": {
+        "default": "mdi:timer-play-outline"
+      },
+      "smart_sleep_minutes": {
+        "default": "mdi:timer-pause-outline"
+      },
+      "led_brightness": {
+        "default": "mdi:brightness-6"
+      },
+      "battery_work_seconds": {
+        "default": "mdi:battery-clock-outline"
+      },
+      "battery_sleep_seconds": {
+        "default": "mdi:sleep"
+      }
+    },
+    "time": {
+      "led_on_time": {
+        "default": "mdi:led-on"
+      },
+      "led_off_time": {
+        "default": "mdi:led-off"
+      },
+      "dnd_start_time": {
+        "default": "mdi:bell-sleep"
+      },
+      "dnd_end_time": {
+        "default": "mdi:bell-ring-outline"
+      }
+    },
+    "select": {
+      "mode": {
+        "default": "mdi:fountain",
+        "state": {
+          "normal": "mdi:water-pump",
+          "smart": "mdi:brain"
+        }
+      }
+    },
+    "switch": {
+      "power": {
+        "default": "mdi:power",
+        "state": {
+          "off": "mdi:power-off"
+        }
+      },
+      "led": {
+        "default": "mdi:led-on",
+        "state": {
+          "off": "mdi:led-off"
+        }
+      },
+      "do_not_disturb": {
+        "default": "mdi:bell-outline",
+        "state": {
+          "on": "mdi:bell-sleep"
+        }
+      },
+      "child_lock": {
+        "default": "mdi:lock",
+        "state": {
+          "off": "mdi:lock-open-variant"
+        }
+      }
+    }
+  }
+}

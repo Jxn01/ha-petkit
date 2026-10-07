@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH, DeviceInfo
 from homeassistant.helpers.entity import async_generate_entity_id
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import CONF_ADDRESS, CONF_MODEL, CONF_NAME, DOMAIN
+from .const import CONF_ADDRESS, CONF_MODEL, CONF_NAME, DOMAIN, MANUFACTURER, MODEL_NAMES
 from .coordinator import PetkitBleCoordinator
 
 
@@ -53,11 +53,14 @@ class PetkitBleEntity(CoordinatorEntity[PetkitBleCoordinator]):
         firmware = d.firmware if d else None
         hardware = d.hardware_version if d else None
         serial = d.serial_number if d else None
+        alias = self.coordinator.config_entry.data[CONF_MODEL]
         return DeviceInfo(
             identifiers={(DOMAIN, self._address)},
+            connections={(CONNECTION_BLUETOOTH, self._address)},
             name=self.coordinator.config_entry.data[CONF_NAME],
-            manufacturer="Petkit",
-            model=self.coordinator.config_entry.data[CONF_MODEL],
+            manufacturer=MANUFACTURER,
+            model=MODEL_NAMES.get(alias, alias),
+            model_id=alias,
             sw_version=firmware or None,
             hw_version=hardware or None,
             serial_number=serial or None,

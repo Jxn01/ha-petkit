@@ -1,18 +1,18 @@
 {
   "domain": "petkit_ble",
-  "name": "Petkit BLE",
+  "name": "PetKit BLE",
   "after_dependencies": [],
   "bluetooth": [
     {"connectable": true, "local_name": "Petkit_W4*"},
     {"connectable": true, "local_name": "Petkit_W5*"},
     {"connectable": true, "local_name": "Petkit_CTW*"}
   ],
-  "codeowners": ["@aavdberg"],
+  "codeowners": ["@aavdberg", "@Jxn01"],
   "config_flow": true,
   "dependencies": ["bluetooth", "bluetooth_adapters"],
-  "documentation": "https://github.com/aavdberg/ha-petkit",
+  "documentation": "https://github.com/Jxn01/ha-petkit",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/aavdberg/ha-petkit/issues",
+  "issue_tracker": "https://github.com/Jxn01/ha-petkit/issues",
   "requirements": ["bleak>=0.22.0", "bleak-retry-connector>=3.0.0"],
-  "version": "1.10.0"
+  "version": "1.10.0+jxn.1"
 }
