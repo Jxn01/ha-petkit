@@ -127,7 +127,7 @@ FA FC FD <cmd:1> <type:1> <seq:1> <len_lo:1> <len_hi:1> [data:N] FB
 | 5 | filterWarning | 0/1 |
 | 6-9 | pumpRunTime | 4 bytes big-endian, total seconds |
 | 10 | filterPercent | 0-100, filter life remaining % |
-| 11 | runStatus | 0=idle, 1=running |
+| 11 | runStatus | 0=idle, 1=running — ⚠️ on a W4XUVC (fw 63) it stays 1 while the pump sleeps in a smart cycle (measured 2026-10-19); the integration reads pump activity from `pumpRunTime` advancing instead |
 | 12-15 | todayPumpRunTime | (optional) 4 bytes big-endian, seconds today |
 
 The `todayPumpRunTime` field (bytes 12-15) is only present on newer firmware versions:

@@ -62,6 +62,9 @@ class PetkitFountainData:
     power_status: int = 0  # 0=off, 1=on
     mode: int = 0  # 0=unknown/off, 1=normal, 2=smart
     running_status: int = 0
+    # Whether pumpRunTime advanced since the previous poll -- set by the coordinator for W4/W5/CTW2, None
+    # when unknown. On a W4XUVC runStatus stays 1 while the pump sleeps in a smart cycle (2026-10-19).
+    pump_active: bool | None = None
     dnd_state: int = 0
 
     # Warnings
@@ -154,7 +157,13 @@ class PetkitFountainData:
 
     @property
     def is_pump_running(self) -> bool:
-        """Return True when the pump is actively running."""
+        """Return True when the pump is actively running.
+
+        The runtime counter is the evidence when the coordinator could compare two polls (``pump_active``);
+        otherwise runStatus, which on some models only means "the program is running".
+        """
+        if self.pump_active is not None:
+            return self.pump_active
         return self.running_status == 1
 
     @property

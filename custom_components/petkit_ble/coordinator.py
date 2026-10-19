@@ -134,6 +134,46 @@ def _reconcile_mode_into(
     return new_mode
 
 
+# A runtime delta older than this says the pump ran SOMETIME in the gap, not that it runs now. Allows one
+# missed poll.
+PUMP_ACTIVITY_MAX_GAP_S = 2.5 * POLL_INTERVAL
+
+
+def _pump_active_from_runtime(
+    prev: tuple[int, float] | None,
+    runtime: int,
+    now: float,
+) -> bool | None:
+    """Did pumpRunTime advance since the previous poll? None when that cannot be told.
+
+    ``prev`` is ``(pumpRunTime, monotonic time)`` of the previous successful poll. Unknown on the first
+    poll, after a gap longer than PUMP_ACTIVITY_MAX_GAP_S, and when the counter went backwards (it does
+    reset: a W4XUVC read 7 268 187 s on 2026-10-06 and 528 225 s on 2026-10-19).
+    """
+    if prev is None:
+        return None
+    prev_runtime, prev_time = prev
+    if now - prev_time > PUMP_ACTIVITY_MAX_GAP_S or runtime < prev_runtime:
+        return None
+    return runtime > prev_runtime
+
+
+def _apply_pump_activity(
+    data: PetkitFountainData,
+    prev: tuple[int, float] | None,
+    now: float,
+) -> tuple[int, float]:
+    """Set ``data.pump_active`` from the runtime counter (W4/W5/CTW2) and return the new ``prev``.
+
+    CMD 210's runStatus stayed 1 on a W4XUVC through every smart-mode sleep (2026-10-19), so pump
+    running, power and energy read "on" around the clock. The CTW3 is left on its own runStatus: its
+    counter bytes tick every poll (issue #65) and it was not measured.
+    """
+    if not data.is_ctw3:
+        data.pump_active = _pump_active_from_runtime(prev, data.pump_runtime, now)
+    return (data.pump_runtime, now)
+
+
 async def _load_mode_state_into(store: Any) -> int | None:
     """Load the persisted mode from a ``Store`` snapshot if one exists.
 
@@ -330,6 +370,9 @@ class PetkitBleCoordinator(DataUpdateCoordinator[PetkitFountainData]):
         # diagnostic aid for issue #65 (CTW3 detect_status offset unknown).
         self._prev_raw_state: bytes = b""
 
+        # (pumpRunTime, monotonic time) of the previous successful poll -- see _apply_pump_activity.
+        self._pump_prev: tuple[int, float] | None = None
+
         super().__init__(
             hass,
             _LOGGER,
@@ -507,6 +550,7 @@ class PetkitBleCoordinator(DataUpdateCoordinator[PetkitFountainData]):
                 )
             self._prev_raw_state = data.raw_state
 
+        self._pump_prev = _apply_pump_activity(data, self._pump_prev, time.monotonic())
         self._reconcile_settings(data)
         self._mode_cache = _reconcile_mode_into(data, self._mode_cache, self._mode_store)
 
