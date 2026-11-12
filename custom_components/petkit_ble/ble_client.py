@@ -63,7 +63,7 @@ class PetkitFountainData:
     mode: int = 0  # 0=unknown/off, 1=normal, 2=smart
     running_status: int = 0
     # Whether pumpRunTime advanced since the previous poll -- set by the coordinator for W4/W5/CTW2, None
-    # when unknown. On a W4XUVC runStatus stays 1 while the pump sleeps in a smart cycle (2026-10-19).
+    # when unknown. On a W4XUVC runStatus stays 1 while the pump sleeps in a smart cycle.
     pump_active: bool | None = None
     dnd_state: int = 0
 

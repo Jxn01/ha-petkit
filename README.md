@@ -149,7 +149,7 @@ Communication uses a proprietary BLE protocol over two GATT characteristics (not
 
 ---
 
-## This fork: look and language (Jxn01, 2026-10-07)
+## This fork: look and language
 
 This is [Jxn01's fork](https://github.com/Jxn01/ha-petkit) of
 [aavdberg/ha-petkit](https://github.com/aavdberg/ha-petkit) (MIT). On top of upstream `1.10.0` it adopts an

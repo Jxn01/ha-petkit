@@ -148,7 +148,7 @@ def _pump_active_from_runtime(
 
     ``prev`` is ``(pumpRunTime, monotonic time)`` of the previous successful poll. Unknown on the first
     poll, after a gap longer than PUMP_ACTIVITY_MAX_GAP_S, and when the counter went backwards (it does
-    reset: a W4XUVC read 7 268 187 s on 2026-10-06 and 528 225 s on 2026-10-19).
+    reset: a W4XUVC read 7 268 187 s one day and 528 225 s two weeks later).
     """
     if prev is None:
         return None
@@ -165,7 +165,7 @@ def _apply_pump_activity(
 ) -> tuple[int, float]:
     """Set ``data.pump_active`` from the runtime counter (W4/W5/CTW2) and return the new ``prev``.
 
-    CMD 210's runStatus stayed 1 on a W4XUVC through every smart-mode sleep (2026-10-19), so pump
+    CMD 210's runStatus stayed 1 on a W4XUVC through every smart-mode sleep, so pump
     running, power and energy read "on" around the clock. The CTW3 is left on its own runStatus: its
     counter bytes tick every poll (issue #65) and it was not measured.
     """

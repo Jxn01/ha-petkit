@@ -1,6 +1,6 @@
 """Pump activity from the runtime counter, not from runStatus (W4/W5/CTW2).
 
-Measured on a W4XUVC (Eversweet 3 Pro UVC, firmware 63) on 2026-10-19: in a 3 min on / 3 min off cycle
+Measured on a W4XUVC (Eversweet 3 Pro UVC, firmware 63): in a 3 min on / 3 min off cycle
 CMD 210's ``runStatus`` (byte 11) stayed 1 the whole time, while ``pumpRunTime`` (bytes 6-9, seconds)
 advanced only while the pump turned -- +12, +0, +3, +64, +64 s over consecutive ~65 s polls. So
 "pump running" (and the power/energy sensors built on it) read "on" around the clock, and an alert on
@@ -17,7 +17,7 @@ from custom_components.petkit_ble.coordinator import (
     _pump_active_from_runtime,
 )
 
-# (seconds since the first poll, pumpRunTime) as read on 2026-10-19 11:41:05..11:46:28 local time.
+# (seconds since the first poll, pumpRunTime) as read over about five minutes.
 MEASURED = [(0, 0x080EA1), (65, 0x080EAD), (130, 0x080EAD), (194, 0x080EB0), (258, 0x080EF0), (323, 0x080F30)]
 
 
